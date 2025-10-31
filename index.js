@@ -2,18 +2,18 @@
  * @type {string} valtozo ami tartalmazza a cimet, mivel const ezert a kesobbiekben nem valtoztathatjuk
  */
 const tabletitle = 'Javítási referencia'; // tabletitle valtozo deklaralasa aminek egy string tipusu erteket
+
 /**
- * @type {{title: string}} valtozo ami tartalmazza tablazat header elso oszlopanak tulajdonsagait
- */
-const tableheaderfirstname = { // tableheaderformname valtozo deklaralasa, aminek egy objektum tipusu erteket adunk
-    title:'Keresztnév' // az objektum title tulajdonsaganak egy string tipusu erteket adunk
-}; 
-/**
- * @type {{title: string}} valtozo ami tartalmazza tablazat header második oszlopanak tulajdonsagait
- */
-const tableheaderlastname = { // tableheaderlastname valtozo deklaralasa, aminek egy objektum tipusu erteket adunk
-    title:'Vezetéknév' // az objektum title tulajdonsaganak egy string tipusu erteket adunk
-}; 
+ * @type {{title: string}[]} valtozo ami tartalmazza tablazat header elemeit es tulajdonsagait
+ */
+const tableHeaderArray = [ // tableHeaderArray valtozo deklaralasa, aminek egy array tipusu erteket adunk
+    { // elso elem, ami egy objektum
+        title:'Keresztnév'// az objektum title tulajdonsaganak egy string tipusu erteket adunk
+    },
+    { // masodik elem, ami egy objektum
+        title:'Vezetéknév' // az objektum title tulajdonsaganak egy string tipusu erteket adunk
+    }
+]
 /**
  * @type {{ lastName: string, middleName: string, firstName: string}} valtozo ami osszevonva tartalmazza az elso sor ertekeit 
  */
@@ -56,14 +56,14 @@ document.body.appendChild(divforheader); // hozzafuzom a letrehozott elemet a ht
  * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazatfejlec elso oszlopa
  */
 const firstnameheader = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy firstnameheader nevu valtozoba
-firstnameheader.innerText = tableheaderfirstname.title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableheaderforname változó title tulajdonságának erteket ami egy string es erteke Keresztnév
+firstnameheader.innerText = tableHeaderArray[0].title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableHeaderArray változó elso elemenek title tulajdonságán talalhato erteket ami egy string es erteke Keresztnév
 divforheader.appendChild(firstnameheader) /// hozzafuzzuk a korabban letrehozott divforheader divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
 
 /**
  * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami  a tablazatfejlec masodik oszlopa
  */
 const lastnameheader = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy firstnameheader nevu valtozoba
-lastnameheader.innerText = tableheaderlastname.title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableheaderlastname változó title tulajdonságának erteket ami egy string es erteke Vezetéknév
+lastnameheader.innerText = tableHeaderArray[1].title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableHeaderArray változó elso elemenek title tulajdonságán talalhato erteket ami egy string es erteke Vezetéknév
 divforheader.appendChild(lastnameheader) // hozzafuzzuk a korabban letrehozott divforheader divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
 
 /**
