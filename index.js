@@ -47,83 +47,40 @@ document.body.appendChild(divfortitle) // hozzafuzom a letrehozott elemet a html
 const divforheader = document.createElement('div'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy divforheader nevu valtozoba
 document.body.appendChild(divforheader); // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
 
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazatfejlec elso oszlopa
- */
-const firstnameheader = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy firstnameheader nevu valtozoba
-firstnameheader.innerText = tableHeaderArray[0].title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableHeaderArray változó elso elemenek title tulajdonságán talalhato erteket ami egy string es erteke Keresztnév
-divforheader.appendChild(firstnameheader) /// hozzafuzzuk a korabban letrehozott divforheader divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+for(let i = 0; i< tableHeaderArray.length; i++){ // novekmenyes ciklus, ahol a ciklus valtozo a tableHeaderArray elemeinek indexet veszi fel
+    /**
+    * @type {HTMLSpanElement} ami tartalmaz egy span elemet, amit a ciklusvaltozo alapjan beallitunk
+    */
+    const headerSpanElement = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy headerSpanElement nevu valtozoba
+    headerSpanElement.innerText = tableHeaderArray[i].title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableHeaderArray változó aktualis elemenek title tulajdonságán talalhato erteket ami egy string
+    divforheader.appendChild(headerSpanElement) /// hozzafuzzuk a korabban letrehozott divforheader divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+}
 
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami  a tablazatfejlec masodik oszlopa
- */
-const lastnameheader = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy firstnameheader nevu valtozoba
-lastnameheader.innerText = tableHeaderArray[1].title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableHeaderArray változó elso elemenek title tulajdonságán talalhato erteket ami egy string es erteke Vezetéknév
-divforheader.appendChild(lastnameheader) // hozzafuzzuk a korabban letrehozott divforheader divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+for(let i = 0; i< tableBodyArray.length; i++){ // novekmenyes ciklus, ahol a ciklus valtozo a tableBodyArray elemeinek indexet veszi fel
+    /**
+     * @type {HTMLDivElement} ami tartalmaz egy div elemet a tablazat egy adott soranak
+     */
+    const tableRowwdiv = document.createElement('div'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy tableRowwdiv nevu valtozoba
+    document.body.append(tableRowwdiv);  // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
 
-/**
- * @type {HTMLDivElement} ami tartalmaz egy div elemet a tablazat elso soranak
- */
-const htmlfirstrowdiv = document.createElement('div'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlfirstrowdiv nevu valtozoba
-document.body.append(htmlfirstrowdiv);  // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
+    /**
+     * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor elso oszlop tartalmanak
+     */
+    const htmlRowVeznev = document.createElement('span');  // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowVeznev nevu valtozoba
+    htmlRowVeznev.innerText = tableBodyArray[i].lastName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó aktualis elemenek lastname tulajdonságának erteket ami egy string
+    tableRowwdiv.appendChild(htmlRowVeznev); // hozzafuzzuk a korabban letrehozott tableRowwdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
 
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazat elso sora és elso oszlopa
- */
-const htmlFirstRowVeznev = document.createElement('span');  // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowVeznev nevu valtozoba
-htmlFirstRowVeznev.innerText = tableBodyArray[0].lastName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó elso elemenek lastname tulajdonságának erteket ami egy string es erteke Dienes
-htmlfirstrowdiv.appendChild(htmlFirstRowVeznev); // hozzafuzzuk a korabban letrehozott htmlfirstrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+    /**
+     * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor masodik oszlop tartalmanak
+     */
+    const htmlRowKoznev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKoznev nevu valtozoba
+    htmlRowKoznev.innerText = tableBodyArray[i].middleName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek  middlename tulajdonságának erteket ami egy string vagy nem definialt
+    tableRowwdiv.appendChild(htmlRowKoznev); // hozzafuzzuk a korabban letrehozott tableRowwdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
 
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazat elso sora masodik oszlopa 
- */
-const htmlFirstRowKoznev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKoznev nevu valtozoba
-htmlFirstRowKoznev.innerText = tableBodyArray[0].middleName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó elso elemenek middlename tulajdonságának erteket ami egy string es erteke Zoltán
-htmlfirstrowdiv.appendChild(htmlFirstRowKoznev); // hozzafuzzuk a korabban letrehozott htmlfirstrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
-
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazat elso sora harmadik oszlopa 
- */
-const htmlFirstRowKernev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKernev nevu valtozoba
-htmlFirstRowKernev.innerText = tableBodyArray[0].firstName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó elso elemenek firstname tulajdonságának erteket ami egy string es erteke Pál
-htmlfirstrowdiv.appendChild(htmlFirstRowKernev); // hozzafuzzuk a korabban letrehozott htmlfirstrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
-
-/**
- * @type {HTMLDivElement} ami tartalmaz egy div elemet a tablazat masodik soranak
- */
-const htmlsecondrowdiv = document.createElement('div'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlsecondrowdiv nevu valtozoba
-document.body.append(htmlsecondrowdiv);  // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
-
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazat masodik sora elso oszlopa
- */
-const htmlSecondRowVeznev = document.createElement('span');  // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlSecondRowVeznev nevu valtozoba
-htmlSecondRowVeznev.innerText = tableBodyArray[1].lastName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó masodik elemenek lastName tulajdonságának erteket ami egy string es erteke Obádovics
-htmlsecondrowdiv.appendChild(htmlSecondRowVeznev); // hozzafuzzuk a korabban letrehozott htmlsecondrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
-
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazat masodik sora masodik oszlopa 
- */
-const htmlSecondRowKernev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlSecondRowKernev nevu valtozoba
-htmlSecondRowKernev.innerText = tableBodyArray[1].firstName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó masodik elemenek firstname tulajdonságának erteket ami egy string es erteke Gyula
-htmlsecondrowdiv.appendChild(htmlSecondRowKernev); // hozzafuzzuk a korabban letrehozott htmlsecondrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
-
-/**
- * @type {HTMLDivElement} ami tartalmaz egy div elemet a tablazat harmadik soranak
- */
-const htmlthirdrowdiv = document.createElement('div'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlthirdrowdiv nevu valtozoba
-document.body.append(htmlthirdrowdiv);  // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
-
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazat harmadik sora elso oszlopa
- */
-const htmlThirdRowVeznev = document.createElement('span');  // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlThirdRowVeznev nevu valtozoba
-htmlThirdRowVeznev.innerText = tableBodyArray[2].lastName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó harmadik elemenek lastName tulajdonságának erteket ami egy string es erteke Dávid
-htmlthirdrowdiv.appendChild(htmlThirdRowVeznev); // hozzafuzzuk a korabban letrehozott htmlthirdrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
-
-/**
- * @type {HTMLSpanElement} ami tartalmaz egy span elemet, ami a tablazat harmadik sora masodik oszlopa
- */
-const htmlThirdRowKernev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlThirdRowKernev nevu valtozoba
-htmlThirdRowKernev.innerText = tableBodyArray[2].firstName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó harmadik elemenek firstname tulajdonságának erteket ami egy string es erteke Gyula
-htmlthirdrowdiv.appendChild(htmlThirdRowKernev); // hozzafuzzuk a korabban letrehozott htmlthirdrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+    /**
+     * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor harmadik oszlop tartalmanak
+     */
+    const htmltRowKernev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKernev nevu valtozoba
+    htmltRowKernev.innerText = tableBodyArray[i].firstName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek firstname tulajdonságának erteket ami egy string
+    tableRowwdiv.appendChild(htmltRowKernev); // hozzafuzzuk a korabban letrehozott htmlfirstrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+}
