@@ -34,12 +34,7 @@ const tableBodyArray = [ // tableBodyArray valtozo deklaralasa, aminek egy array
     }
 ]
 
-/**
- * @type {HTMLDivElement} ami tartalmaz egy div elemet a weboldal cimenek
- */
-const divfortitle = document.createElement('div') // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy divfortitle nevu valtozoba
-divfortitle.innerText = tabletitle // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tabletitle valtozo erteket, ami egy string es erteke Javítási referencia
-document.body.appendChild(divfortitle) // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
+createElementWithContent(document.body, tabletitle, 'div'); // meghivom a korabban definialt createElementWithContent a document.body-val, hogy ahhoz fuzze hozza az uj elemet, a tabletitle valtozoval, hogy az erteke legyen a tartalma, es egy div stringel, hogy a document.createElement egy divelementet hozzon letre.  
 
 /**
  * @type {HTMLDivElement} ami tartalmaz egy div elemet amihez kesobb hozzafuzzuk a fejlecerteket
@@ -47,13 +42,8 @@ document.body.appendChild(divfortitle) // hozzafuzom a letrehozott elemet a html
 const divforheader = document.createElement('div'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy divforheader nevu valtozoba
 document.body.appendChild(divforheader); // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
 
-for(let i = 0; i< tableHeaderArray.length; i++){ // novekmenyes ciklus, ahol a ciklus valtozo a tableHeaderArray elemeinek indexet veszi fel
-    /**
-    * @type {HTMLSpanElement} ami tartalmaz egy span elemet, amit a ciklusvaltozo alapjan beallitunk
-    */
-    const headerSpanElement = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy headerSpanElement nevu valtozoba
-    headerSpanElement.innerText = tableHeaderArray[i].title; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableHeaderArray változó aktualis elemenek title tulajdonságán talalhato erteket ami egy string
-    divforheader.appendChild(headerSpanElement) /// hozzafuzzuk a korabban letrehozott divforheader divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+for(const i in tableHeaderArray){ // vegigiteralok a tableHeaderArray elerheto tulajdonsagain. Jelen esetben a ciklusvaltozo mindig egy index erteket veszi fel
+    createElementWithContent(divforheader, tableHeaderArray[i].title, 'span');// meghivom a korabban definialt createElementWithContent a divforheader divvel, hogy ahhoz fuzze hozza az uj elemet, a tableHeaderArray aktualis elemenek a title tulajdonsagaval, hogy az legyen a tartalma, es a span stringel, hogy a document.createElement egy spanelementet hozzon letre.  
 }
 
 for(const tableArrayElement of tableBodyArray){ // vegig iteralok a tablebodyarrayen es a ciklusvaltozo mindig az aktualis elem erteket veszi fel
@@ -62,28 +52,29 @@ for(const tableArrayElement of tableBodyArray){ // vegig iteralok a tablebodyarr
      */
     const tableRowwdiv = document.createElement('div'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy tableRowwdiv nevu valtozoba
     document.body.append(tableRowwdiv);  // hozzafuzom a letrehozott elemet a html bodyhoz a document.body appendChild fuggvenyenek segitsegevel
-
-    /**
-     * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor elso oszlop tartalmanak
-     */
-    const htmlRowVeznev = document.createElement('span');  // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowVeznev nevu valtozoba
-    htmlRowVeznev.innerText = tableArrayElement.lastName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó aktualis elemenek lastname tulajdonságának erteket ami egy string
-    tableRowwdiv.appendChild(htmlRowVeznev); // hozzafuzzuk a korabban letrehozott tableRowwdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+    createElementWithContent(tableRowwdiv, tableArrayElement.lastName, 'span'); // meghivom a korabban definialt createElementWithContent a tableRowwdiv divvel, hogy ahhoz fuzze hozza az uj elemet, a tableArrayElement aktualis elemenek a lastName tulajdonsagaval, hogy az legyen a tartalma, es a span stringel, hogy a document.createElement egy spanelementet hozzon letre.  
 
     if(tableArrayElement.middleName != undefined){ // megvizsgalom, hogy a middlename tulajdonsaga a tomb aktualis elemenek definialva van-e
-        
-        /**
-         * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor masodik oszlop tartalmanak
-         */
-        const htmlRowKoznev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKoznev nevu valtozoba
-        htmlRowKoznev.innerText = tableArrayElement.middleName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek  middlename tulajdonságának erteket ami egy string vagy nem definialt
-        tableRowwdiv.appendChild(htmlRowKoznev); // hozzafuzzuk a korabban letrehozott tableRowwdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat 
+        createElementWithContent(tableRowwdiv, tableArrayElement.middleName, 'span'); // meghivom a korabban definialt createElementWithContent a tableRowwdiv divvel, hogy ahhoz fuzze hozza az uj elemet, a tableArrayElement aktualis elemenek a middleName tulajdonsagaval, hogy az legyen a tartalma, es a span stringel, hogy a document.createElement egy spanelementet hozzon letre.  
     }
+    createElementWithContent(tableRowwdiv, tableArrayElement.firstName, 'span'); // meghivom a korabban definialt createElementWithContent a tableRowwdiv divvel, hogy ahhoz fuzze hozza az uj elemet, a tableArrayElement aktualis elemenek a firstName tulajdonsagaval, hogy az legyen a tartalma, es a span stringel, hogy a document.createElement egy spanelementet hozzon letre.  
+}
 
+/**
+ * 
+ * A fuggveny segitsegevel hozunk letre cellakat a tablazatba. 
+ * 
+ * @param {HTMLElement} parentElement ami azt hatarozza meg, hogy melyik mar letezo elemhez fuzzuk hozza az uj elemet 
+ * @param {string} cellContent ami meghatarozza az uj ellem tartalmat
+ * @param {string} celltype ami meghatarozza, hogy milyen uj html elemet hozunk letre
+ * 
+ * @returns {void} a jelenlegi pelda nem indokolja, hogy visszaterjunk a letrehozott elemmel, de ez nem mindig van igy. lasd orai munka 
+ */
+function createElementWithContent(parentElement, cellContent, celltype){ // definialom 
     /**
-     * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor harmadik oszlop tartalmanak
-     */
-    const htmltRowKernev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKernev nevu valtozoba
-    htmltRowKernev.innerText = tableArrayElement.firstName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek firstname tulajdonságának erteket ami egy string
-    tableRowwdiv.appendChild(htmltRowKernev); // hozzafuzzuk a korabban letrehozott htmlfirstrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+     * @type {HTMLElement} valtozo ami tartalmaz egy html-elemet, aminek beallitunk egy tartalmat es hozzafuzzuk egy masik elemhez
+     */
+    const cellElement = document.createElement(celltype); // meghivom a document.createElement fuggvenyt a bejovo string parameter segitsegevel, es eltarolom egy cellElement valtozoban
+    cellElement.innerText = cellContent; // beallitom a letrehozott elem tartalmat a a fuggveny egyik string parameterenek segitsegevel az innerText tulajdonsagan keresztul
+    parentElement.appendChild(cellElement) // hozzafuzom a letrehozott elemet a fuggvenynek atadott htmlelementhez 
 }
