@@ -56,7 +56,7 @@ for(let i = 0; i< tableHeaderArray.length; i++){ // novekmenyes ciklus, ahol a c
     divforheader.appendChild(headerSpanElement) /// hozzafuzzuk a korabban letrehozott divforheader divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
 }
 
-for(let i = 0; i< tableBodyArray.length; i++){ // novekmenyes ciklus, ahol a ciklus valtozo a tableBodyArray elemeinek indexet veszi fel
+for(const tableArrayElement of tableBodyArray){ // vegig iteralok a tablebodyarrayen es a ciklusvaltozo mindig az aktualis elem erteket veszi fel
     /**
      * @type {HTMLDivElement} ami tartalmaz egy div elemet a tablazat egy adott soranak
      */
@@ -67,20 +67,23 @@ for(let i = 0; i< tableBodyArray.length; i++){ // novekmenyes ciklus, ahol a cik
      * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor elso oszlop tartalmanak
      */
     const htmlRowVeznev = document.createElement('span');  // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowVeznev nevu valtozoba
-    htmlRowVeznev.innerText = tableBodyArray[i].lastName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó aktualis elemenek lastname tulajdonságának erteket ami egy string
+    htmlRowVeznev.innerText = tableArrayElement.lastName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray változó aktualis elemenek lastname tulajdonságának erteket ami egy string
     tableRowwdiv.appendChild(htmlRowVeznev); // hozzafuzzuk a korabban letrehozott tableRowwdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
 
-    /**
-     * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor masodik oszlop tartalmanak
-     */
-    const htmlRowKoznev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKoznev nevu valtozoba
-    htmlRowKoznev.innerText = tableBodyArray[i].middleName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek  middlename tulajdonságának erteket ami egy string vagy nem definialt
-    tableRowwdiv.appendChild(htmlRowKoznev); // hozzafuzzuk a korabban letrehozott tableRowwdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
+    if(tableArrayElement.middleName != undefined){ // megvizsgalom, hogy a middlename tulajdonsaga a tomb aktualis elemenek definialva van-e
+        
+        /**
+         * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor masodik oszlop tartalmanak
+         */
+        const htmlRowKoznev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKoznev nevu valtozoba
+        htmlRowKoznev.innerText = tableArrayElement.middleName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek  middlename tulajdonságának erteket ami egy string vagy nem definialt
+        tableRowwdiv.appendChild(htmlRowKoznev); // hozzafuzzuk a korabban letrehozott tableRowwdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat 
+    }
 
     /**
      * @type {HTMLSpanElement} ami tartalmaz egy span elemet az adott sor harmadik oszlop tartalmanak
      */
     const htmltRowKernev = document.createElement('span'); // meghivom a document.createElementet egy stringel, es beleteszem a visszateresi erteket egy htmlFirstRowKernev nevu valtozoba
-    htmltRowKernev.innerText = tableBodyArray[i].firstName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek firstname tulajdonságának erteket ami egy string
+    htmltRowKernev.innerText = tableArrayElement.firstName; // beallitjuk a span element tartalmanak az innerText tulajdonsagon keresztul a tableBodyArray aktualis elemenek firstname tulajdonságának erteket ami egy string
     tableRowwdiv.appendChild(htmltRowKernev); // hozzafuzzuk a korabban letrehozott htmlfirstrowdiv divhez a most beallitott span elementet tartalmazo valtozonk tartalmat
 }
