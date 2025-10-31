@@ -11,10 +11,10 @@
 Miután kiválasztottad melyik feladatot szeretnéd csinálni. Csinálsz 1 új repót (lehet privát is) az alábbi táblázat alapján:
 | röpdoga csoport | repository neve |
 | :-----------: |:-------------:|
-| A csoport | terulet_esemeny |
-| B csoport | irodalom_szereplok |
-| C csoport | irodalom_tipusok |
-| D csoport | tori_ezernegyszaz |
+| [A csoport](./A_csoport.pdf) | terulet_esemeny |
+| [B csoport](./B_csoport.pdf) | irodalom_szereplok |
+| [C csoport](C_csoport.pdf) | irodalom_tipusok |
+| [D csoport](./D_csoport.pdf) | tori_ezernegyszaz |
 
 
 Miután klónoztad a repót, git bash segítségével belenavigálsz a klónozott mappába, és kiadod az alábbi parancsot:
