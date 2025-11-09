@@ -19,7 +19,7 @@ Miután kiválasztottad melyik feladatot szeretnéd csinálni. Csinálsz 1 új r
 
 Miután klónoztad a repót, git bash segítségével belenavigálsz a klónozott mappába, és kiadod az alábbi parancsot:
 
-1. Nem kell külön mappát létrehoznod! mehet közvetlen a klónozott git repó mappájába. Létrehozod az index.html-t és beirod a táblázat html kódját. A táblázat után teszel egy
+1. Nem kell külön mappát létrehoznod! mehet közvetlen a klónozott git repó mappájába. Létrehozod az index.html-t és beirod a CSAK a táblázat html kódját (a dives rész nem kell). A táblázat után teszel egy
 ```html
 <br/>
 <hr>
